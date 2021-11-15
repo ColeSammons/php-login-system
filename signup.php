@@ -19,7 +19,7 @@
             <input class="form-control" type="text" name="email" placeholder="Email...">
             <input class="form-control" type="text" name="uid" placeholder="Username...">
             <input class="form-control" type="password" name="pwd" placeholder="Password...">
-            <input class="form-control" type="text" name="pwdrepeat" placeholder="Repeat Password...">
+            <input class="form-control" type="password" name="pwdrepeat" placeholder="Repeat Password...">
             <button class="btn btn-primary" type="submit" name="submit">Sign Up</button>
         </form>
     </section>
