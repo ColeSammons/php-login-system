@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Sign Up</title>
-</head>
-<body>
     <?php
         include_once "header.php";
     ?>
@@ -22,8 +12,32 @@
             <input class="form-control" type="password" name="pwdrepeat" placeholder="Repeat Password...">
             <button class="btn btn-primary" type="submit" name="submit">Sign Up</button>
         </form>
+        <?php
+        if(isset($_GET["error"])) {
+            if($_GET["error"] == "emptyinput") {
+                echo "<p>Fill in all fields!</p>";
+            }
+            else if($_GET["error"] == "invaliduid") {
+                echo "<p>Choose a proper username!</p>";
+            }
+            else if($_GET["error"] == "invalidemail") {
+                echo "<p>Choose a proper email!</p>";
+            }
+            else if($_GET["error"] == "passwordsdontmatch") {
+                echo "<p>Passwords don't match!</p>";
+            }
+            else if($_GET["error"] == "stmtfailed") {
+                echo "<p>Something went wrong, try again!</p>";
+            }
+            else if($_GET["error"] == "usernametaken") {
+                echo "<p>Username already taken!</p>";
+            }
+            else if($_GET["error"] == "none") {
+                echo "<p>You have signed up!</p>";
+            }
+        }
+    ?>
     </section>
-
 
 </body>
 </html>

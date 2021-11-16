@@ -1,4 +1,5 @@
 <?php
+// Signup functions
     function emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) {
         $result;
         if(empty($name) || empty($email) || empty($username) || empty($pwd) || empty($pwdRepeat)) {
@@ -93,3 +94,40 @@
         header("location: ../signup.php?error=none");
         exit();
     };
+
+//Login functions
+
+function emptyInputLogin($username, $pwd) {
+    $result;
+    if(empty($username) || empty($pwd)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+};
+
+function loginUser($conn, $username, $pwd) {
+    $uidExists = uidExists($conn, $username, $username);//uses either username or email for user.
+
+    if($uidExists === false) {//if no email or username in database
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+
+    $pwdHashed = $uidExists["usersPwd"];//grabbing pwd data from assoc array from database
+    $checkPwd = password_verify($pwd, $pwdHashed);//if hashed pass matches user input pass, then equals true
+
+    if($checkPwd === false) {
+        header("location: ../login.php?error=wronglogin");
+        exit();
+    }
+    else if($checkPwd === true) {
+        session_start();//creates a new session for user
+        $_SESSION["userid"] = $uidExists["usersId"];
+        $_SESSION["useruid"] = $uidExists["usersUid"];
+        header("location: ../index.php");
+        exit();
+    }
+}

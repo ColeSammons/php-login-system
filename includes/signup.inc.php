@@ -1,7 +1,4 @@
 <?php
-     require_once 'dbh.inc.php';
-     require_once 'functions.inc.php';
-
     //if brought to this page by the submit from signup.php
     if(isset($_POST["submit"])) {
         $name = $_POST["name"];//taken from name of input
@@ -9,6 +6,10 @@
         $username = $_POST["uid"];
         $pwd = $_POST["pwd"];
         $pwdRepeat = $_POST["pwdRepeat"];
+
+        require_once 'dbh.inc.php';
+        require_once 'functions.inc.php';
+
 
         if(emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) == false) {
             header("location: ../signup.php?error=emptyinput");
